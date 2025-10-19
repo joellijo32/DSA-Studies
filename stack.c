@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-	int a[100]; int top; 
+	int a[100]; int top = -1;  
 	
 	void push(int item){
 		if(top == 100){
@@ -40,7 +40,7 @@
 	int main(){
 		printf("Stack Simuli\n"); 
 		while(1){
-			printf("1. push\n2. pop\n3. peek\n4. display\nChoice: "); 
+			printf("\n1. push\n2. pop\n3. peek\n4. display\nChoice: "); 
 			int choice; scanf("%d", &choice);
 			int val;  
 			switch(choice){
