@@ -30,7 +30,7 @@ void inject(int item){
 		f--; 
 		a[r] = item;
 	} else a[++r] = item;
-} 
+}
 
 
 int pop(){
@@ -59,7 +59,7 @@ void display(){
 		printf("\nDeque Empty\n");  return;
 	}
 	printf("\n"); 
-	for(int i = 0; i < 10; i++){
+	for(int i = f; i <= r; i++){
 		printf("%d ", a[i]); 
 	}
 	printf("\n"); 
@@ -74,7 +74,7 @@ int main(){
 			case 1: printf("Value: "); scanf("%d", &val); 
 				push(val); break;
 			case 2: printf("Value: "); scanf("%d", &val); 
-				push(val); break;
+				inject(val); break;
 			case 3: val = pop(); 
 				if(val != -99){
 					printf("\nPopped: %d", val); 
