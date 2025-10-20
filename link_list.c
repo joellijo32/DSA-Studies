@@ -3,20 +3,33 @@
 
 struct node {
 	int data; 
-	struct node *link; 
+	struct node *link;
 }; 
 
 int main(){
-	struct node *head = (struct node *)malloc(sizeof(struct node));
-	head->data = 45; 
-	head->link = NULL; 
-	printf("%d\n", head->data); 
-	struct node *current = (struct node *)malloc(sizeof(struct node)); 
-	head->link = current; 
-	current->data = 23; 
-	current->link = NULL; 
-	printf("Second: %d\n", current->data); 
+	struct node *head = NULL, *temp = NULL, *newNode = NULL; 
+	int n, value; 
+	printf("Size: ");scanf("%d", &n); 
+	for(int i = 0; i < n;i++){
+		newNode = (struct node *)malloc(sizeof(struct node)); 
+		printf("Value %d: ", i+1); scanf("%d", &value); 
+		newNode->data = value; 
+		newNode->link = NULL;
 
-
-	return 0;
+		if(head == NULL){
+			head = newNode; 
+			temp = head;
+		} else {
+			temp->link = newNode; 
+			temp = newNode; 
+		}
+	}
+	printf("\nLinked List: \n"); 
+	temp = head; 
+	while(temp != NULL){
+		printf("%d ", temp->data);
+		temp = temp->link;
+	}
+	printf("NULL\n"); 
+	return 0; 
 }
