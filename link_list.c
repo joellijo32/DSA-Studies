@@ -6,6 +6,16 @@ struct node {
 	struct node *link;
 }; 
 
+void count(struct node *head){
+	struct node *temp = head; 
+	int count = 0; 
+	while(temp != NULL){
+		count++; 
+		temp = temp->link;
+	}
+	printf("\nCounted number of nodes: %d\n", count); 
+}
+
 int main(){
 	struct node *head = NULL, *temp = NULL, *newNode = NULL; 
 	int n, value; 
@@ -24,12 +34,7 @@ int main(){
 			temp = newNode; 
 		}
 	}
-	printf("\nLinked List: \n"); 
-	temp = head; 
-	while(temp != NULL){
-		printf("%d ", temp->data);
-		temp = temp->link;
-	}
-	printf("NULL\n"); 
+
+	count(head); 
 	return 0; 
 }
