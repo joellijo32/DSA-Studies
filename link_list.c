@@ -6,32 +6,19 @@ struct node {
 	struct node *link;
 }; 
 
-
-void add(struct node *head, int val){ 
-	struct node *newNode = (struct node *)malloc(sizeof(struct node)); 
-	newNode->data = val; 
-	newNode->link = NULL;
-	struct node *temp = head; 
-	while(temp->link != NULL){
-		temp = temp->link;
-	}
-	temp->link = newNode; 
-	printf("\nAdded Successfully\n"); 
-}
-
 int main(){
-	struct node *newNode, *head, *temp; 
-	printf("Enter till -99\n"); int val; 
+	printf("Enter till -99\n"); 
+	struct node *head, *newNode, *temp; int n;
 	while(1){
-		scanf("%d", &val); 
-		if(val == -99) break;
+		scanf("%d", &n); 
+		if(n == -99) break;
 		newNode = (struct node *)malloc(sizeof(struct node)); 
-		newNode->data = val; 
+		newNode->data = n;
 		newNode->link = NULL; 
 
 		if(head == NULL){
-			head = newNode;
-			temp = head; 
+			head = newNode; 
+			temp = head;
 		} else {
 			temp->link = newNode; 
 			temp = newNode; 
@@ -43,15 +30,21 @@ int main(){
 		printf("%d ", temp->data); 
 		temp = temp->link;
 	}
-	printf("\nto Add: "); int n;scanf("%d", &n); 
-	add(head, n);
+	printf("\n"); 
 
-	printf("\nArray now: "); 
+	printf("New element: "); scanf("%d", &n); 
+	newNode = (struct node *)malloc(sizeof(struct node)); 
+	newNode->data = n;
+	newNode->link = head; 
+	head = newNode; 
+	printf("\nCurrent: \n"); 
 	temp = head; 
 	while(temp != NULL){
-		printf("%d ", temp->data); 	
-		temp = temp->link;
-	} 
-	printf("\n");
-	return 0; 
+		printf("%d ", temp->data); 
+		temp = temp->link; 
+	}
+	printf("\n"); 
 }
+
+
+
