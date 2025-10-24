@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct node {
+	struct node *prev; 
+	char page[100]; 
+	struct node *next; 
+} Node ;
+
+Node* createNode(char a[100]){
+	Node *newNode = (Node *)malloc(sizeof(Node)); 
+	strcpy(newNode->page, a) ; 
+	newNode->prev = NULL, newNode->next = NULL ;
+	return newNode; 
+}
+
+void visit(Node* current, char a[100]){
+	Node* newNode = createNode(a);
+	current->next = newNode;  
+	newNode->prev = current; 
+	newNode->next = NULL;
+}
+
+void back(Node* current){
+	if(current->prev == NULL){
+		printf("\nNo Back\n"); 
+		return; 
+	}
+	current = current->prev; 
+	printf("\nNow at: %s\n", current->page); 
+}
+
+void forward(Node* current){
+	if(current->next == NULL){
+		printf("\nNo forward\n"); return; 
+	}
+	current = current->next; 
+	printf("\nNow at: %s\n", current->page); 
+}
+
+
+void display(Node* head){
+	Node* temp = head; printf("\n"); 
+	while(temp != NULL){
+		printf("%s\n", temp->page); 
+		temp = temp->next; 
+	}
+	printf("\n"); 
+}
+
+int main(){
+	char second[100] = "google.com";   
+	Node* head = createNode(second); int val ; Node* temp = head;
+	printf("\nInitially at %s\n", head->page); 
+	while(1){
+		printf("\n1. forward\n2. backward\n3. display\n4. exit\nchoice: "); 
+		scanf("%d", &val); 
+		switch(val){
+			case 1: printf("To go to: "); char str[100];
+				scanf("%s", str);
+				Node* newNode = createNode(str);
+				temp->next = newNode; 
+				newNode->prev = temp; 
+				forward(temp); 
+				temp=temp->next; break;
+			case 2: back(temp); break;
+			case 3: display(head); break;
+			case 4: return 0; 
+			default: printf("Invalid choice"); 
+		}
+	}
+}
+			
+
+
+
+
