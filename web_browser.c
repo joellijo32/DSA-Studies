@@ -15,13 +15,6 @@ Node* createNode(char a[100]){
 	return newNode; 
 }
 
-void visit(Node* current, char a[100]){
-	Node* newNode = createNode(a);
-	current->next = newNode;  
-	newNode->prev = current; 
-	newNode->next = NULL;
-}
-
 void back(Node* current){
 	if(current->prev == NULL){
 		printf("\nNo Back\n"); 
@@ -33,18 +26,28 @@ void back(Node* current){
 
 void forward(Node* current){
 	if(current->next == NULL){
-		printf("\nNo forward\n"); return; 
+		printf("\nTo go to: "); char* s = malloc(100); 
+		scanf("%s", s); 
+		 
+		Node* newNode = createNode(s); 
+		current->next = newNode; newNode->prev = current; 
+		current = newNode;   
+	}else {
+		current = current->next; 
 	}
-	current = current->next; 
 	printf("\nNow at: %s\n", current->page); 
 }
 
 
-void display(Node* head){
-	Node* temp = head; printf("\n"); 
+void display(Node* temp, Node* curr){
+	printf("\n");
+	if(temp == NULL) printf("\nError Displaying\n"); 
 	while(temp != NULL){
-		printf("%s\n", temp->page); 
-		temp = temp->next; 
+		printf("%s", temp->page); 
+		if(temp == curr){
+			printf(" <- Current page");
+		}
+		temp = temp->next;printf("\n");  
 	}
 	printf("\n"); 
 }
@@ -57,19 +60,17 @@ int main(){
 		printf("\n1. forward\n2. backward\n3. display\n4. exit\nchoice: "); 
 		scanf("%d", &val); 
 		switch(val){
-			case 1: printf("To go to: "); char str[100];
-				scanf("%s", str);
-				Node* newNode = createNode(str);
-				temp->next = newNode; 
-				newNode->prev = temp; 
-				forward(temp); 
+			case 1: forward(temp); 
 				temp=temp->next; break;
-			case 2: back(temp); break;
-			case 3: display(head); break;
+			case 2: back(temp); 
+				if(temp->prev != NULL) temp= temp->prev;  
+				break;
+			case 3: display(head, temp); break;
 			case 4: return 0; 
 			default: printf("Invalid choice"); 
 		}
 	}
+	free(head); free(temp); 
 }
 			
 
