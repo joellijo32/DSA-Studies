@@ -8,6 +8,7 @@ Sorting algorithms
 Searching - linear , binary  
 Polynomial addition  
 Sparse Matrix Operations  
-Max Heap
+Max Heap - Insertion,Deletion
+
 
 And more on the way...
